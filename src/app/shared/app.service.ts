@@ -4,13 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { map, switchMap } from 'rxjs/operators';
 
 import { csvJSON, dynamicBlur } from '../helpers/utils';
-import { IProcessedDataFromCSV } from '../core/models';
-
-interface IParsedDataItem {
-  year: string;
-  data1: string;
-  data2: string;
-}
+import { IProcessedDataFromCSV, IParsedDataItem } from '../core/models';
 
 interface IParsedDataAccumulator {
   category: { label: string }[];
