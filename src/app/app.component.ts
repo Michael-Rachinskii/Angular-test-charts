@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AppService } from './shared/app.service';
 
+import { IProcessedDataFromCSV } from './core/models';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -24,11 +26,11 @@ export class AppComponent implements OnInit {
   constructor(private readonly appService: AppService) {}
   ngOnInit(): void {
     this.loading = true;
-    this.appService.getDataFromFile().subscribe((data: any) => {
+    this.appService.getDataFromFile().subscribe((data: IProcessedDataFromCSV) => {
       this.dataSource.dataset = data.dataset;
       this.dataSource.categories = data.categories;
       this.loading = false;
-    }, (error) => {
+    }, (error: Error) => {
       this.loading = false;
     });
   }

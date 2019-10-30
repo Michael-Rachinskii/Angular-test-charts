@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { map, switchMap } from 'rxjs/operators';
 
 import { csvJSON, dynamicBlur } from '../helpers/utils';
+import { IProcessedDataFromCSV } from '../core/models';
 
 interface IParsedDataItem {
   year: string;
@@ -15,11 +16,6 @@ interface IParsedDataAccumulator {
   category: { label: string }[];
   firstValue: { value: number }[];
   secondValue: { value: number }[];
-}
-
-interface IProcessedDataFromCSV {
-  categories: { category: { label: string }[] }[];
-  dataset: { seriesname: string, data: { value: number }[] }[];
 }
 
 @Injectable({
