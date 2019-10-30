@@ -28,6 +28,7 @@ export class AppService {
             accum.category.push({ label: dataItemFromCSV.year });
             accum.firstValue.push({ value: dynamicBlur(dataItemFromCSV.data1) });
             accum.secondValue.push({ value: dynamicBlur(dataItemFromCSV.data2) });
+
             return accum;
           }, { category: [], firstValue: [], secondValue: [] });
           const categories = [ { category } ];

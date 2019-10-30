@@ -9,10 +9,12 @@ export const csvJSON = (csv: string): string => {
       const currentLine = line.split(',');
       const obj = currentLine.reduce((accum: IParsedDataItem, stringItem: string, index: number) => {
         accum[headers[index]] = stringItem;
+
         return accum;
-      }, {} as IParsedDataItem);
+      }, {} as any as IParsedDataItem);
       result.push(obj);
     }
+
     return result;
   }, []));
 };

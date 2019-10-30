@@ -10,7 +10,7 @@ import { IProcessedDataFromCSV } from './core/models';
 })
 export class AppComponent implements OnInit {
   private loading = false;
-  private dataSource = {
+  private readonly dataSource = {
     chart: {
       yAxisMaxValue: 64,
       xAxisName: 'Year',
@@ -26,7 +26,8 @@ export class AppComponent implements OnInit {
   constructor(private readonly appService: AppService) {}
   ngOnInit(): void {
     this.loading = true;
-    this.appService.getDataFromFile().subscribe((processedDataFromCSV: IProcessedDataFromCSV) => {
+    this.appService.getDataFromFile()
+      .subscribe((processedDataFromCSV: IProcessedDataFromCSV) => {
       this.dataSource.dataset = processedDataFromCSV.dataset;
       this.dataSource.categories = processedDataFromCSV.categories;
       this.loading = false;
