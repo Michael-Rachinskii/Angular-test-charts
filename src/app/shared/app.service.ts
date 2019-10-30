@@ -21,13 +21,13 @@ export class AppService {
     return timer(0, 1000)
       .pipe(
         switchMap(_ => this.http.get('/assets/example_data.csv', { responseType: 'text' })
-          .pipe(map((data: string): IProcessedDataFromCSV => {
-          const parsedData = JSON.parse(csvJSON(data));
+          .pipe(map((dataFromCSV: string): IProcessedDataFromCSV => {
+          const parsedData = JSON.parse(csvJSON(dataFromCSV));
           const { category, firstValue, secondValue }: IParsedDataAccumulator = parsedData.reduce(
-            (accum: IParsedDataAccumulator, item: IParsedDataItem) => {
-            accum.category.push({ label: item.year });
-            accum.firstValue.push({ value: dynamicBlur(item.data1) });
-            accum.secondValue.push({ value: dynamicBlur(item.data2) });
+            (accum: IParsedDataAccumulator, dataItemFromCSV: IParsedDataItem) => {
+            accum.category.push({ label: dataItemFromCSV.year });
+            accum.firstValue.push({ value: dynamicBlur(dataItemFromCSV.data1) });
+            accum.secondValue.push({ value: dynamicBlur(dataItemFromCSV.data2) });
             return accum;
           }, { category: [], firstValue: [], secondValue: [] });
           const categories = [ { category } ];

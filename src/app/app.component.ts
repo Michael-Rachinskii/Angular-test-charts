@@ -26,9 +26,9 @@ export class AppComponent implements OnInit {
   constructor(private readonly appService: AppService) {}
   ngOnInit(): void {
     this.loading = true;
-    this.appService.getDataFromFile().subscribe((data: IProcessedDataFromCSV) => {
-      this.dataSource.dataset = data.dataset;
-      this.dataSource.categories = data.categories;
+    this.appService.getDataFromFile().subscribe((processedDataFromCSV: IProcessedDataFromCSV) => {
+      this.dataSource.dataset = processedDataFromCSV.dataset;
+      this.dataSource.categories = processedDataFromCSV.categories;
       this.loading = false;
     }, (error: Error) => {
       this.loading = false;
